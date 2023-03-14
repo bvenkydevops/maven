@@ -3,20 +3,29 @@ pipeline {
     stages {
         stage('Download Source Code') {
             steps {
-                git 'https://github.com/myorg/myapp.git'
+                git 'https://github.com/bvenkydevops/maven.git'
             }
         }
-        stage('Build') {
+        stage('validate') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn validate'
             }
         }
       
-        stage('Test') {
+        stage('compile') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+        stage('test') {
             steps {
                 sh 'mvn test'
             }
         }
-        
+        stage('build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
     }
 }
