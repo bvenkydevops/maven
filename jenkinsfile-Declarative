@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('Download Source Code') {
+            steps {
+                git 'https://github.com/myorg/myapp.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+      
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        
+    }
+}
